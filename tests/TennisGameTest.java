@@ -64,4 +64,47 @@ public class TennisGameTest {
 		// This statement should cause an exception
 		game.player1Scored();			
 	}		
+
+
+	@Test (expected = TennisGameException.class)
+	public void testTennisGame_Player1Winspoint_AfterP2HaveWon() throws TennisGameException 
+	
+	{
+	//Arrange
+	TennisGame game = new TennisGame();
+	
+	//Act
+	game.player2Scored();
+	game.player2Scored();
+	game.player2Scored();
+	game.player2Scored();
+	
+	game.player1Scored();
+	
+	
+	}
+
+	@Test
+	public void testTennisGame_P2hasAdvantage() throws TennisGameException
+	
+	{
+	//Arrange
+	TennisGame game = new TennisGame();
+	
+	//Act
+	game.player2Scored();
+	game.player1Scored();
+	game.player2Scored();
+	game.player1Scored();
+	game.player2Scored();
+	game.player1Scored();
+	game.player2Scored();
+	
+	//Arrange
+	
+	String score = game.getScore();
+	assertEquals("Player should be near winning", "player2 has advantage", score);
+	
+	}
+
 }
